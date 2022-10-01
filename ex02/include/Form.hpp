@@ -24,15 +24,17 @@ class Form {
 		Form &operator=(const Form &rhs); // Neither is this, constant attributes
 
 		const std::string	_name;
-		const int	_signGrade;
-		const int	_execGrade;
+		const int			_signGrade;
+		const int			_execGrade;
 
-		bool		_signed;
+		bool				_signed;
+
+		virtual void _execute(const Bureaucrat &target) const = 0;
 
 	public:
 		Form(const Form &other);
 		Form(const std::string &name, int signGrade, int execGrade);
-		virtual ~Form();
+		~Form();
 
 		const std::string	&getName() const;
 		int		getSignGrade() const;
@@ -40,6 +42,7 @@ class Form {
 		bool	isSigned() const;
 
 		void	beSigned(const Bureaucrat &by);
+		void	execute(const Bureaucrat &by) const;
 
 		class GradeTooHighException: public std::exception {
 			public:
@@ -51,6 +54,13 @@ class Form {
 		};
 		class SignException: public Form::GradeTooLowException {
 			public:
+				const char	*what() const throw();
+		};
+		class ExecException: public std::exception {
+			private:
+				const char	*_reason;
+			public:
+				ExecException(const char *reason);
 				const char	*what() const throw();
 		};
 };
