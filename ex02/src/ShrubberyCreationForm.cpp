@@ -12,54 +12,55 @@
 
 #include <ShrubberyCreationForm.hpp>
 #include <Bureaucrat.hpp>
+#include <fstream>
 #include <iostream>
 
-ShrubberyCreationForm::ShrubberyCreationForm():
-		Form(FORM_NAME, SIGN_GRADE, EXEC_GRADE) {}
+# define FORM_NAME		"Shrubbery creation form"
+# define SIGN_GRADE		145
+# define EXEC_GRADE		137
+
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target):
+		AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE, target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other):
-		Form(other) {}
+		AForm(other) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-static bool	shouldBranch() {
-	static unsigned int	seed = rand();
-
-	return ((double) rand_r(&seed) / (float) RAND_MAX) <= BRANCH_ODDS;
-}
-
-static void	generateBranch(char treeBuf[99][101], float x, float y, float dx, float dy) {
-	while (x >= 0 && y >= 0 && x <= 1.0f && y <= 1.0f) {
-		int	px = (int) (x * 98.f), py = (int) (y * 98.f);
-		treeBuf[py][px] = '#';
-		x += dx;
-		y += dy;
-		if (shouldBranch()) {
-			if (dx == 0.f) {
-				dx = .25f / 98;
-			}
-			if (dy == 0.f) {
-				dy = .25f / 98;
-			}
-			dy /= 2;
-			generateBranch(treeBuf, x, y, -dx, dy);
-		}
+void ShrubberyCreationForm::_execute(const std::string &target) const {
+	std::ofstream	out(target + "_shrubbery");
+	if (out.is_open()) {
+		out <<	"                                                         .\n"
+				"                                              .         ;\n"
+				"                 .              .              ;%     ;;\n"
+				"                   ,           ,                :;%  %;\n"
+				"                    :         ;                   :;%;'     .,\n"
+				"           ,.        %;     %;            ;        %;'    ,;\n"
+				"             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n"
+				"              %;       %;%;      ,  ;       %;  ;%;   ,%;'\n"
+				"               ;%;      %;        ;%;        % ;%;  ,%;'\n"
+				"                `%;.     ;%;     %;'         `;%%;.%;'\n"
+				"                 `:;%.    ;%%. %@;        %; ;@%;%'\n"
+				"                    `:%;.  :;bd%;          %;@%;'\n"
+				"                      `@%:.  :;%.         ;@@%;'\n"
+				"                        `@%.  `;@%.      ;@@%;\n"
+				"                          `@%%. `@%%    ;@@%;\n"
+				"                            ;@%. :@%%  %@@%;\n"
+				"                              %@bd%%%bd%%:;\n"
+				"                                #@%%%%%:;;\n"
+				"                                %@@%%%::;\n"
+				"                                %@@@%(o);  . '\n"
+				"                                %@@@o%;:(.,'\n"
+				"                            `.. %@@@o%::;\n"
+				"                               `)@@@o%::;\n"
+				"                                %@@(o)::;\n"
+				"                               .%@@@@%::;\n"
+				"                               ;%@@@@%::;.\n"
+				"                              ;%@@@@%%:;;;.\n"
+				"                          ...;%@@@@@%%:;;;;,..\n";
+		out.close();
+	} else {
+		std::cerr << "Failed to open file for shrubbery!\n";
 	}
-}
-
-void ShrubberyCreationForm::_execute(const Bureaucrat &target) const {
-	char treeBuf[99][101]; // odd so the tree can start in the center
-
-	for (int i = 0; i < 99; i++) {
-		memset(treeBuf[i], ' ', 99);
-		treeBuf[i][99] = '\n';
-		treeBuf[i][100] = '\0';
-	}
-
-	generateBranch(treeBuf, .5f, 1.f, 0.f, -1.f / 98);
-	for (int i = 0; i < 99; i++)
-		std::cout << treeBuf[i];
-
-	(void) target;
 }
 

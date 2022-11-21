@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Form.hpp                                           :+:    :+:            */
+/*   AForm.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lsinke <lsinke@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
@@ -10,33 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <string>
 # include <ostream>
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 	private:
-		Form(); // Not implemented
-		Form &operator=(const Form &rhs); // Neither is this, constant attributes
+		AForm(); // Not implemented
+		AForm &operator=(const AForm &rhs); // Neither is this, constant attributes
 
 		const std::string	_name;
 		const int			_signGrade;
 		const int			_execGrade;
+		const std::string	_target;
 
 		bool				_signed;
 
-		virtual void _execute(const Bureaucrat &target) const = 0;
+		virtual void _execute(const std::string &target) const = 0;
 
 	public:
-		Form(const Form &other);
-		Form(const std::string &name, int signGrade, int execGrade);
-		~Form();
+		AForm(const AForm &other);
+		AForm(const std::string &name, int signGrade, int execGrade, const std::string &target);
+		~AForm();
 
 		const std::string	&getName() const;
+		const std::string	&getTarget() const;
 		int		getSignGrade() const;
 		int		getExecGrade() const;
 		bool	isSigned() const;
@@ -52,7 +54,7 @@ class Form {
 			public:
 				const char	*what() const throw();
 		};
-		class SignException: public Form::GradeTooLowException {
+		class SignException: public AForm::GradeTooLowException {
 			public:
 				const char	*what() const throw();
 		};
@@ -65,6 +67,6 @@ class Form {
 		};
 };
 
-std::ostream &operator<<(std::ostream &lhs, const Form &rhs);
+std::ostream &operator<<(std::ostream &lhs, const AForm &rhs);
 
-#endif //FORM_HPP
+#endif

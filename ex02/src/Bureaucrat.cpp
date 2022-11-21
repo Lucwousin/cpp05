@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <Bureaucrat.hpp>
-#include <Form.hpp>
+#include <AForm.hpp>
 #include <iostream>
 
 // The other bureaucrat won't have an invalid grade, so we don't need to check!
@@ -48,10 +48,10 @@ void Bureaucrat::decrementGrade() {
 	_grade++;
 }
 
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) const {
 	try {
 		form.beSigned(*this);
-	} catch (const Form::SignException &e) {
+	} catch (const AForm::SignException &e) {
 		std::cout	<< _name << " couldn't sign form "
 					<< form.getName() << " because " << e.what() << "\n";
 		return;
@@ -59,10 +59,10 @@ void Bureaucrat::signForm(Form &form) {
 	std::cout << _name << " signed form " << form.getName() << "\n";
 }
 
-void Bureaucrat::executeForm(const Form &form) {
+void Bureaucrat::executeForm(const AForm &form) const {
 	try {
 		form.execute(*this);
-	} catch (const Form::ExecException &e) {
+	} catch (const AForm::ExecException &e) {
 		std::cout	<< _name << " couldn't execute form "
 					<< form.getName() << " because " << e.what() << "\n";
 		return;

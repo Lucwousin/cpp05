@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := bureaucrat_ex01
+NAME := bureaucrat_ex02
 
 CC := c++
 
@@ -21,8 +21,10 @@ CFLAGS += -g
 SRCD :=	src/
 SRCS :=	main.cpp					\
 		Bureaucrat.cpp				\
-		Form.cpp					\
-		ShrubberyCreationForm.cpp
+		AForm.cpp					\
+		ShrubberyCreationForm.cpp	\
+		RobotomyRequestForm.cpp		\
+		PresidentialPardonForm.cpp
 SRCP :=	$(addprefix $(SRCD), $(SRCS))
 
 OBJD :=	obj/
@@ -31,8 +33,10 @@ OBJP :=	$(addprefix $(OBJD), $(OBJS))
 
 INCD :=	include/
 INCS :=	Bureaucrat.hpp				\
-		Form.hpp					\
-		ShrubberyCreationForm.hpp
+		AForm.hpp					\
+		ShrubberyCreationForm.hpp	\
+		RobotomyRequestForm.hpp		\
+		PresidentialPardonForm.hpp
 
 INCP := $(addprefix $(INCD), $(INCS))
 CFLAGS += -I $(INCD)
@@ -51,6 +55,7 @@ $(NAME): $(OBJP)
 clean:
 	@rm -rf $(OBJD)
 	@echo "Done cleaning $(CURDIR)/$(OBJD)"
+	@rm -f *_shrubbery
 
 fclean: clean
 	@rm -f $(NAME)

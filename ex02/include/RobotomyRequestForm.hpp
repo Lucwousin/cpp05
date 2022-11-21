@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ShrubberyCreationForm.hpp                          :+:    :+:            */
+/*   RobotomyRequestForm.hpp                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lsinke <lsinke@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/01 17:36:44 by lsinke        #+#    #+#                 */
-/*   Updated: 2022/10/01 17:36:44 by lsinke        ########   odam.nl         */
+/*   Created: 2022/11/21 16:01:52 by lsinke        #+#    #+#                 */
+/*   Updated: 2022/11/21 16:01:52 by lsinke        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include <AForm.hpp>
 
-class ShrubberyCreationForm: public AForm {
+class RobotomyRequestForm: public AForm {
 	private:
-		ShrubberyCreationForm(); // Not implemented, need target param
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &rhs); // Not implemented
+		RobotomyRequestForm(); // Not implemented, need target param
+		RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs); // Not implemented
 
 		virtual void _execute(const std::string &target) const;
 
 	public:
-		ShrubberyCreationForm(const std::string &target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other);
-		virtual ~ShrubberyCreationForm();
+		RobotomyRequestForm(const std::string &target);
+		RobotomyRequestForm(const RobotomyRequestForm &other);
+		virtual ~RobotomyRequestForm();
 };
 
-#endif //SHRUBBERYCREATIONFORM_HPP
+#endif

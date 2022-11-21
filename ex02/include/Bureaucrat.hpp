@@ -15,7 +15,7 @@
 
 # include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	private:
@@ -28,15 +28,15 @@ class Bureaucrat {
 	public:
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat(const std::string &name, int grade);
-		~Bureaucrat();
+		virtual ~Bureaucrat();
 
 		const std::string &	getName() const;
 		int					getGrade() const;
 
 		void	incrementGrade();
 		void	decrementGrade();
-		void	signForm(Form &form);
-		void	executeForm(const Form &form);
+		void	signForm(AForm &form) const;
+		void	executeForm(const AForm &form) const;
 
 	class GradeTooHighException: public std::exception {
 		public:

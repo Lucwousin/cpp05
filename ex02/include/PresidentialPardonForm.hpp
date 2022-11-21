@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ShrubberyCreationForm.hpp                          :+:    :+:            */
+/*   PresidentialPardonForm.hpp                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lsinke <lsinke@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/01 17:36:44 by lsinke        #+#    #+#                 */
-/*   Updated: 2022/10/01 17:36:44 by lsinke        ########   odam.nl         */
+/*   Created: 2022/11/21 16:01:52 by lsinke        #+#    #+#                 */
+/*   Updated: 2022/11/21 16:01:52 by lsinke        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 # include <AForm.hpp>
 
-class ShrubberyCreationForm: public AForm {
+class PresidentialPardonForm: public AForm {
 	private:
-		ShrubberyCreationForm(); // Not implemented, need target param
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &rhs); // Not implemented
+		PresidentialPardonForm(); // Not implemented, need target param
+		PresidentialPardonForm &operator=(const PresidentialPardonForm &rhs); // Not implemented
 
 		virtual void _execute(const std::string &target) const;
 
 	public:
-		ShrubberyCreationForm(const std::string &target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other);
-		virtual ~ShrubberyCreationForm();
+		PresidentialPardonForm(const std::string &target);
+		PresidentialPardonForm(const PresidentialPardonForm	 &other);
+		virtual ~PresidentialPardonForm();
 };
 
-#endif //SHRUBBERYCREATIONFORM_HPP
+#endif
