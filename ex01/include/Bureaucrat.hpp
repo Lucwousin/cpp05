@@ -28,7 +28,7 @@ class Bureaucrat {
 	public:
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat(const std::string &name, int grade);
-		~Bureaucrat();
+		virtual ~Bureaucrat();
 
 		const std::string &	getName() const;
 		int					getGrade() const;

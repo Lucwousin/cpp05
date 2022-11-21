@@ -35,7 +35,7 @@ class AForm {
 	public:
 		AForm(const AForm &other);
 		AForm(const std::string &name, int signGrade, int execGrade, const std::string &target);
-		~AForm();
+		virtual ~AForm();
 
 		const std::string	&getName() const;
 		const std::string	&getTarget() const;
