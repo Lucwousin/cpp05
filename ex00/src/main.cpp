@@ -49,7 +49,7 @@ static ErrorState	testCrement(Bureaucrat ref, bool in) {
 }
 
 int	main() {
-	for (int i = 1; i < 150 + 1; i++)
+	for (int i = 1; i <= 150; i++)
 		assert(testCtor("crat", i) == SUCCESS);
 
 	assert(testCtor("crat", 0) == TOO_HIGH);
